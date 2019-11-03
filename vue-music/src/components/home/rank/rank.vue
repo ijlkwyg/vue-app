@@ -140,4 +140,8 @@ export default {
                 line-height 0.7rem
                 border-bottom 1px solid $color-border
                 overflow hidden
+                li
+                    white-space nowrap
+                    text-overflow ellipsis
+                    overflow  hidden
 </style>

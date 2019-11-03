@@ -12,15 +12,15 @@
             </div>
             <div class="password">
                 <img src="../img/password.png" alt="">
-                <input type="number" maxlength="16" placeholder="密码" v-model="password">
+                <input type="password" maxlength="16" placeholder="密码" v-model="password">
                 <!-- <button :disabled="isLogon" class='sendCaptcha' @click="_captcha()">{{sendCaptcha}}</button> -->
             </div>
-            <button @click="login" :disabled="isLogon" class="login-button">登录</button>
+            <button @click="_login" :disabled="isLogon" class="login-button">登录</button>
         </div>
     </div>
 </template>
 <script>
-import {captcha,logon,hasPassword} from '../../../api/login'
+import {captcha,logon,hasPassword,login} from '../../../api/login'
 export default {
     name:'phoneLogin',
     data(){
@@ -35,9 +35,17 @@ export default {
         back(){
             this.$router.back()
         },
-        login(){
-            captcha(this.phone).then(res=>{
-                console.log(res);
+        _login(){
+            // captcha(this.phone).then(res=>{
+            //     console.log(res);
+            // })
+            login(this.phone,this.password).then(res=>{
+                if(res.code === 200 ){
+                    this.$store.state.user.id = res.profile.userId
+                    this.$store.state.user.nickname = res.profile.nickname
+                    this.$store.state.user.backgroundUrl = res.profile.backgroundUrl
+                    this.$store.state.user.avatarUrl = res.profile.avatarUrl
+                }
             })
         }
     },    

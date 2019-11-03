@@ -5,7 +5,13 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state:{
         isLogin:false,
-        recommend:{id:null,list:null}
+        recommend:{id:null,list:null},
+        user:{
+            id:'',
+            nickname:'',
+            backgroundUrl:'',
+            avatarUrl:''
+        }
         
     },
     getters:{

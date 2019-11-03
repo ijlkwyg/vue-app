@@ -3,13 +3,15 @@
         <div class="login-header">
             <span>帐号</span>
         </div>
+        <!-- 未登录显示登陆界面 -->
         <div class="noLogin" v-if="$store.state.isLogin === false">
             <p>登录云音乐</p>   
             <p>手机电脑多端同步，尽享海量高品质音乐</p>
             <router-link to="/loginContent" tag="button" @click="changeLogin" class="loginButton">立即登录</router-link>
         </div>
+        <!-- 登陆后显示用户信息 -->
         <div class="userMessage" v-if="$store.state.isLogin === true">
-            这里是用户信息
+            
         </div>
         <div class="message">
             <span class="iconfont icon-icon-test1"></span>
@@ -48,9 +50,6 @@
 export default {
     name:'Login',
     methods:{
-        changeLogin(){
-            this.$store.commit("changeLogin")
-        },
         quitLogin(){
             this.$store.commit("quitLogin")
         }
